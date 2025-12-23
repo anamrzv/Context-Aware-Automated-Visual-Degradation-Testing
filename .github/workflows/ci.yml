@@ -95,6 +95,8 @@ jobs:
           pip3 install requests pillow
       
       - name: Run AI analysis script
+        env:
+          AI_API_KEY: ${{ secrets.AI_API_KEY }}
         run: |
           echo "[$(date)] [AI-ANALYSIS] Starting AI analysis script..." >> ai.log
           python3 scripts/check_diff.py
