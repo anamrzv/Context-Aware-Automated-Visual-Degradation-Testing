@@ -1,0 +1,38 @@
+/* theme.css partial copy */
+body[data-theme="pastel"] {
+  --color-bg: #fefefe;
+  --color-bg-alt: #f5f7fa;
+  --color-surface: #fff;
+  --color-surface-alt: #f0f3f9;
+  --color-text: #2d3440;
+  --color-primary: #6d8af2;
+  --color-primary-hover: #4f6de0;
+  --color-accent: #f7a690;
+  --gradient-hero: linear-gradient(
+    135deg,
+    #6d8af2 0%,
+    #b08bf9 55%,
+    #f7a690 100%
+  );
+}
+body[data-theme="mono"] {
+  --color-bg: #ffffff;
+  --color-bg-alt: #f1f1f3;
+  --color-surface: #ffffff;
+  --color-surface-alt: #ededf0;
+  --color-text: #202124;
+  --color-primary: #0ea5e9;
+  --color-primary-hover: #000;
+  --color-accent: #55585c;
+  --gradient-hero: linear-gradient(135deg, #000, #404244);
+}
+.theme-tile .swatch-row {
+  display: flex;
+  gap: 0.3rem;
+}
+.theme-tile .swatch {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  background: var(--color-primary);
+}

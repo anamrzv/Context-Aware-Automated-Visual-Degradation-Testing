@@ -1,0 +1,72 @@
+image: mcr.microsoft.com/playwright:v1.48.0-jammy
+
+stages:
+  - test
+  - ai-analysis
+  - report
+
+variables:
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+
+playwright-visual:
+  stage: test
+  script:
+    - echo "[$(date)] [TEST] Starting Playwright tests..." > test.log
+    - npm ci
+    - npx playwright install --with-deps chromium
+    - npm run build
+    - npm run preview &
+    - sleep 5
+    - npx playwright test || true
+    - |
+      if [ -f diff_detected.txt ]; then
+        echo "[$(date)] [TEST] Visual changes detected!" >> test.log
+      else
+        echo "[$(date)] [TEST] No visual changes found." >> test.log
+      fi
+    - echo "[$(date)] [TEST] Tests finished." >> test.log
+  artifacts:
+    when: always
+    paths:
+      - test-artifacts/
+      - tests/baselines/
+      - playwright-report/
+      - diff_detected.txt
+      - test.log
+    expire_in: 2 days
+
+ai-analysis:
+  stage: ai-analysis
+  needs: ["playwright-visual"]
+  script:
+    - echo "[$(date)] [AI-ANALYSIS] Installing dependencies..." > ai.log
+    - apt-get update && apt-get install -y python3-pip
+    - pip3 install requests pillow
+    - echo "[$(date)] [AI-ANALYSIS] Starting AI analysis script..." >> ai.log
+    - python3 scripts/check_diff.py
+    - echo "[$(date)] [AI-ANALYSIS] Script finished." >> ai.log
+  artifacts:
+    paths:
+      - ai-report.json
+      - ai.log
+    when: always
+  allow_failure: true
+
+generate-report:
+  stage: report
+  needs: ["ai-analysis", "playwright-visual"]
+  script:
+    - cat test.log > pipeline.log
+    - if [ -f ai.log ]; then cat ai.log >> pipeline.log; fi
+    - echo "[$(date)] [REPORT] Generating HTML report..." >> pipeline.log
+    - python3 scripts/generate_report.py
+    - echo "[$(date)] [REPORT] Process complete." >> pipeline.log
+  artifacts:
+    paths:
+      - visual_report.html
+      - test-artifacts/
+      - tests/baselines/
+      - pipeline.log
+    when: always
+    expire_in: 1 week
+    expose_as: "Visual Changelog"
