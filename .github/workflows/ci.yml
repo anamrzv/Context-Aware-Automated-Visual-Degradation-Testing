@@ -171,6 +171,12 @@ jobs:
           name: visual-report
           path: ./report
       
+      - name: Create index.html for GitHub Pages
+        run: |
+          if [ -f ./report/visual_report.html ]; then
+            cp ./report/visual_report.html ./report/index.html
+          fi
+      
       - name: Upload to GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
