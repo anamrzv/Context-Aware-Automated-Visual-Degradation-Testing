@@ -24,11 +24,7 @@
       <div class="profile-grid">
         <div class="info-card">
           <h3>Account</h3>
-          <p class="text-soft" style="font-size: 0.65rem">Member since 2024</p>
-          <div style="font-size: 0.65rem">
-            <strong>Name:</strong> Alex Doe<br /><strong>Email:</strong>
-            alex@example.com<br /><strong>Joined:</strong> Jan 2024
-          </div>
+          
         </div>
         <div class="info-card">
           <h3>Loyalty</h3>
@@ -82,7 +78,7 @@
       </div>
       <div class="flow-zone">
         <div class="order-card">
-          <strong style="font-size: 0.75rem">Order #8412</strong>
+          <strong style="font-size: 0.75rem">Order #ERROR</strong>
           <span style="font-size: 0.6rem" class="text-soft"
             >Placed: 2025-11-12</span
           >
