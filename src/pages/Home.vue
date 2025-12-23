@@ -6,13 +6,11 @@
         Curated apparel & essentials. Static Vue prototype packed with
         components for vision testing.
       </p>
-      <div class="hero-actions">
         <a href="#new" class="button button-large">Shop New</a>
         <a href="#sale" class="button button-accent button-large">View Sale</a>
         <a href="#collections" class="button button-outline button-large"
           >Collections</a
         >
-      </div>
       <div class="badge-stack">
         <span class="badge badge-new">New Season</span>
         <span class="badge badge-sale">Flash Sale</span>
