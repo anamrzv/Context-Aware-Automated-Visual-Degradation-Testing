@@ -24,7 +24,11 @@
       <div class="profile-grid">
         <div class="info-card">
           <h3>Account</h3>
-          
+          <p class="text-soft" style="font-size: 0.65rem">Member since 2024</p>
+          <div style="font-size: 0.65rem">
+            <strong>Name:</strong> Alex Doe<br /><strong>Email:</strong>
+            alex@example.com<br /><strong>Joined:</strong> Jan 2024
+          </div>
         </div>
         <div class="info-card">
           <h3>Loyalty</h3>
@@ -35,12 +39,7 @@
         </div>
         <div class="info-card">
           <h3>Notifications</h3>
-          <p style="font-size: 0.6rem">Email & push preferences (static).</p>
-          <div style="display: flex; gap: 0.4rem; flex-wrap: wrap">
-            <span class="badge badge-new">Email</span
-            ><span class="badge">SMS</span
-            ><span class="badge badge-sale">Push</span>
-          </div>
+          
         </div>
         <div class="info-card">
           <h3>Avatars</h3>
